@@ -28,7 +28,8 @@ function insertThingy(thingy) {
 
 After:
 ```js
-const sql = require('node-mssql-easy-request')(CONNECTION_STRING_THINGY);
+const mssql = require('mssql');
+const sql = require('node-mssql-easy-request')(CONNECTION_STRING_THINGY, mssql);
 
 function insertThingy(thingy) {
   return sql.execute({

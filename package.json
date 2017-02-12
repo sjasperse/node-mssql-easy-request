@@ -1,0 +1,22 @@
+{
+  "name": "node-mssql-easy-request",
+  "version": "1.0.0",
+  "description": "Making it easier to run simple queries via mssql.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sjasperse/node-mssql-easy-request.git"
+  },
+  "author": "sjasperse",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sjasperse/node-mssql-easy-request/issues"
+  },
+  "homepage": "https://github.com/sjasperse/node-mssql-easy-request#readme",
+  "dependencies": {
+    "mssql": "^3.3.0"
+  }
+}
