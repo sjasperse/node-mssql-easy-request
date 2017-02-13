@@ -1,11 +1,11 @@
 
 /**
  * Initialize the Easy Request module
- * @param {Object|String} connectionInfo: Connection string, or whatever needs to be passed into the
+ * @param {Object|String} connConfig: Connection string, or whatever needs to be passed into the
  *   first argument of "new mssql.Connection"
  * @param {mssql} mssql: The mssql library instance. I guess this lets you do whatever initialization you want, and maybe use other DB drivers and whatver.. maybe mocking. Whatever you want.
  */
-module.exports = (connectionInfo, mssql) => {
+module.exports = (connConfig, mssql) => {
     return {
         execute: execute
     };
