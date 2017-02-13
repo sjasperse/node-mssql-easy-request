@@ -43,7 +43,8 @@ module.exports = (connConfig, mssql) => {
                     
                     request.query(command.commandText)
                         .then(fulfill)
-                        .catch(reject);
+                        .catch(reject)
+                        .then(() => { conn.close(); });
                 })
                 .catch (reject);
         });
