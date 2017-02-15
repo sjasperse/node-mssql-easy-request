@@ -5,7 +5,9 @@
  *   first argument of "new mssql.Connection"
  * @param {mssql} mssql: The mssql library instance. I guess this lets you do whatever initialization you want, and maybe use other DB drivers and whatver.. maybe mocking. Whatever you want.
  */
-module.exports = (connConfig, mssql) => {
+module.exports = (connectionInfo, mssql) => {
+    var connPoolPromise = createConnectionPool(connectionInfo);
+
     return {
         execute: execute
     };
@@ -18,9 +20,8 @@ module.exports = (connConfig, mssql) => {
      */
     function execute(command) {
         return new Promise((fulfill, reject) => {
-            var conn = new mssql.Connection(connConfig);
-            conn.connect()
-                .then(() => {
+            connPoolPromise
+                .then(conn => {
                     var request = new mssql.Request(conn);
                     
                     if (command.parameters) {
@@ -43,11 +44,19 @@ module.exports = (connConfig, mssql) => {
                     
                     request.query(command.commandText)
                         .then(fulfill)
-                        .catch(reject)
-                        .then(() => { conn.close(); });
+                        .catch(reject);
                 })
                 .catch (reject);
         });
     };
+
+    function createConnectionPool(connConfig) {
+        return new Promise((fulfill, reject) => {
+            var conn = new mssql.Connection(connConfig);
+            conn.connect()
+                .then(() => fulfill(conn))
+                .catch(reject);
+        });
+    }
 }
 

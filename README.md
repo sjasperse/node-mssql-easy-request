@@ -9,7 +9,7 @@ Before:
 ```js
 function insertThingy(thingy) {
     return new Promise((fulfill, reject) => {
-          new mssql.Connection(CONNECTION_STRING_THINGY);
+          connectionPool
             .then(conn => {
                 conn.connect()
                     .then(() => {
@@ -38,3 +38,9 @@ function insertThingy(thingy) {
   });
 }
 ```
+
+
+Versions
+------------------
+`1.1.0` - Tons of connction reset errors. Switching to pooling.
+`1.0.0` - Initial release, and a few undocumented bugfixes
